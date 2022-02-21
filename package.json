@@ -10,9 +10,7 @@
     "dist-nix": "electron-builder"
   },
   "keywords": [
-    "darts",
-    "algorithm",
-    "tutorial"
+    "browser"
   ],
   "author": "Tyler Martin",
   "license": "GPLv3",
