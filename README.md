@@ -4,6 +4,8 @@ Browser Made With CEF and Electron Uploaded For UMSL To View
 # Building
 There are prebuilt binaries in the repository, but if you want to build it, follow the instructions below
 
+(Pre-Build Requirements: NodeJS, npm, and preferrably windows [only tested building on windows])
+
 # Build Steps
 Step 1: clone this repo (git clone) or download it as a zip
 
