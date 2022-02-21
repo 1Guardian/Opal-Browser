@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <style>
+            @font-face {
+                font-family: "Ubuntu";
+                src: url("fonts/Ubuntu-Regular.ttf");
+                }
+            body{
+                overflow: hidden;
+                font-family: "Ubuntu";
+                font-size: 13px;
+                background-color: white;
+                color: rgb(61, 61, 61);
+            }
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+            }
+
+                .switch input { 
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+                .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+                .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+                input:checked + .slider {
+                background-color: #2196F3;
+            }
+
+                input:focus + .slider {
+                box-shadow: 0 0 1px #2196F3;
+            }
+
+                input:checked + .slider:before {
+                -webkit-transform: translateX(26px);
+                -ms-transform: translateX(26px);
+                transform: translateX(26px);
+            }
+
+                /* Rounded sliders */
+                .slider.round {
+                border-radius: 34px;
+            }
+
+                .slider.round:before {
+                border-radius: 50%;
+            }
+        </style>
+        <script>
+            function populateBody(arg){
+                var enabled = arg;
+                var title = 0;
+                //document.getElementById("page-title").innerHTML = title;
+                if (enabled == true){
+                    document.getElementById("status").innerHTML = "Adblocking and tracker blocking is enabled on this tab";
+                    document.getElementById("shield").setAttribute("style", "width:100px; height:100px; margin-top:25px; filter: grayscale(0%);");
+                    document.getElementById("toggleslider").checked = true;
+                }
+                else {
+                    document.getElementById("status").innerHTML = "Adblocking and tracker blocking is not enabled on this tab";
+                    document.getElementById("shield").setAttribute("style", "width:100px; height:100px; margin-top: 25px; filter: grayscale(100%);");
+                    document.getElementById("toggleslider").checked = false;
+                }
+            }
+            function toggle(){
+                if (document.getElementById("toggleslider").checked == false){
+                    window.app.disableblocker()
+                    disableblocker();
+                }
+                else{
+                    window.app.enableblocker()
+                    enableblocker();
+                }
+            }
+            function disableblocker(){
+                document.getElementById("status").innerHTML = "Adblocking and tracker blocking is not enabled on this tab";
+                document.getElementById("shield").setAttribute("style", "width:100px; height:100px; margin-top: 25px; filter: grayscale(100%);");
+            }
+            function enableblocker(){
+                document.getElementById("status").innerHTML = "Adblocking and tracker blocking is enabled on this tab";
+                document.getElementById("shield").setAttribute("style", "width:100px; height:100px; margin-top: 25px; filter: grayscale(0%);");
+            }
+            function checkblocker(){
+                window.app.checkblocker()
+            }
+        </script>
+    </head>
+    <body onload="javascript:checkblocker()">
+
+        <img src="img/tmpclose.png" style="position: absolute; top:5px; right:5px; height:25px;" onclick="javascript:window.app.closepanel()"/>
+
+        <center>
+            <img src="img/shield.png" id="shield" style="width:100px; height:100px; margin-top: 25px;">
+        </center>
+
+        <center>
+            <h3 id="status" style="color: rgb(105, 104, 104); margin-top: 15px;">Adblocking and tracker blocking is enabled on this page</h3>
+        </center>
+
+        <center>
+            <label class="switch" style="margin-top: 10px;">
+                <input id="toggleslider" type="checkbox" checked onclick="javascript:toggle()">
+                <span class="slider round"></span>
+            </label>
+        </center>
+    </body>
+</html>

@@ -26,6 +26,7 @@ body{
     background-color:#DDE1E3;
     display: inline-flex;
     -webkit-app-region: drag; 
+    z-index:0;
 }
 .closebuttons{
     min-height: 36px;
@@ -56,6 +57,7 @@ body{
     left:0;
     background-color:white;
     display: inline-flex;
+    z-index:1;
 }
 .renderingwindow{
     height: calc(100vh - calc(36px + 36px + 0.5vh));
@@ -108,7 +110,7 @@ body{
     display: flex;
 }
 .searchTerm {
-    width: calc(100vw - 200px);
+    width: calc(100vw - 285px);
     border: 3px solid #F1F3F4;
     border-right: none;
     padding: 5px;
@@ -138,7 +140,7 @@ body{
     display:none;
 }
 .wrap{
-    width: calc(100vw - 200px);
+    width: calc(100vw - 260px);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -216,4 +218,9 @@ body{
 }
 .circlebackfocus:focus{
     background-color: rgb(238, 238, 238);
+}
+.squareback{
+    background-color: #F3F3F3;
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid #b5b6b6;
 }

@@ -1,6 +1,5 @@
 const { ipcRenderer, contextBridge } = require('electron')
 
-
 contextBridge.exposeInMainWorld(
   'app',
   {
@@ -17,5 +16,9 @@ contextBridge.exposeInMainWorld(
     forward: (arg) => ipcRenderer.invoke('forward-message', arg),
     menu: (arg) => ipcRenderer.invoke('menu-message', arg),
     tabmenu: (arg) => ipcRenderer.invoke('tab-menu-message', arg),
+    bookmark: (arg) => ipcRenderer.invoke('bookmark-message', arg),
+    adpanel: () => ipcRenderer.invoke('adblock-panel-message'),
+    enableblocker: (arg) => ipcRenderer.invoke('enable-blocker', arg),
+    disableblocker: (arg) => ipcRenderer.invoke('disable-blocker', arg),
   }
 )

@@ -41,28 +41,49 @@ function loadurlbar(){
             if (is_ip(str) == false){
                 if(textbar.value.startsWith("file://")){
                     window.app.loadurl(TABS.activeindex,textbar.value);
+                    checksecurity(textbar.value);
+                }
+                else if(textbar.value.startsWith("http://")){
+                  window.app.loadurl(TABS.activeindex,textbar.value);
+                  checksecurity(textbar.value);
                 }
                 else {
                     window.app.loadurl(TABS.activeindex,"https://duckduckgo.com/?q=".concat(textbar.value));
+                    checksecurity("https://duckduckgo.com/?q=".concat(textbar.value));
                 }
             }
             else {
                 console.log("Loading IP")
                 textbar.value = "http://".concat(textbar.value)
                 window.app.loadurl(TABS.activeindex,textbar.value);
+                checksecurity(textbar.value);
             }
         }
         else{
             console.log("Loading IP")
             textbar.value = "http://".concat(textbar.value)
             window.app.loadurl(TABS.activeindex,textbar.value);
+            checksecurity(textbar.value);
         }
     }
     else{
         if(textbar.value.includes("https://") != true){
             textbar.value = "https://".concat(textbar.value)
+            checksecurity(textbar.value);
         }
         console.log("Loading URL")
         window.app.loadurl(TABS.activeindex,textbar.value);
+        checksecurity(textbar.value);
     }
+}
+
+async function checksecurity(arg){
+  if(arg.startsWith("http://")){
+    document.getElementById('secure-icon').setAttribute("style", "user-select: none; position: absolute; height:18px; top: 4px; left:4px; opacity:0; transform: rotate(360deg);")
+    document.getElementById('insecure-icon').setAttribute("style", "user-select: none; position: absolute; height:18px; top: 4px; left:4px; opacity:.5; transform: rotate(360deg);")
+  }
+  else {
+      document.getElementById('secure-icon').setAttribute("style", "user-select: none; position: absolute; height:18px; top: 4px; left:4px; opacity:.5; transform: rotate(360deg);")
+      document.getElementById('insecure-icon').setAttribute("style", "user-select: none; position: absolute; height:18px; top: 4px; left:4px; opacity:0; transform: rotate(360deg);")
+  }
 }
