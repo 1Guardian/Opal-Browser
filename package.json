@@ -4,19 +4,38 @@
   "description": "Taking the Internet Back",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist-win": "electron-builder --win portable",
+    "dist-nix": "electron-builder"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "darts",
+    "algorithm",
+    "tutorial"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Tyler Martin",
+  "license": "GPLv3",
   "devDependencies": {
-    "electron": "^11.1.0"
+    "electron": "latest",
+    "electron-builder": "^22.14.5"
+  },
+  "build": {
+    "appId": "Opal Browser",
+    "mac": {
+      "category": "opal.browser.executable"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS"
+    }
+  },
+  "dependencies": {
+    "electron-log": "^4.4.1"
   }
 }
