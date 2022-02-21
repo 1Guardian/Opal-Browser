@@ -9,7 +9,7 @@ folder with a ridiculously long name)
 # Requirements
 NodeJS,
 npm,
-electron,
+electron
 
 # Running The app
 (This app does not have a packaging process because I never wanted to run it in a packaged form since I was using it to learn, so it gets executed like an interpreted language would, like python.)
