@@ -1,22 +1,25 @@
 # Opal-Browser
 Browser Made With CEF and Electron Uploaded For UMSL To View
 
-# Building
-There are prebuilt binaries in the repository, but if you want to build it, follow the instructions below
+# Notes
+This app uses many dependencies from the NodeJS repositories, and 
+one static library (easily identifiable because it is the only 
+folder with a ridiculously long name)
 
-(Pre-Build Requirements: NodeJS, npm, and preferrably windows [only tested building on windows])
+# Requirements
+NodeJS
+npm
+electron
 
-# Build Steps
+# Running The app
+(This app does not have a packaging process because I never wanted to run it in a packaged form since I was using it to learn, so it gets executed like an interpreted language would, like python.)
+
 Step 1: clone this repo (git clone) or download it as a zip
 
 Step 2: navigate into directory and then navigate into 'Opal-Browser-main'
 
 Step 3: Run: npm install
 
-Step 4: Run: npm install electron-builder --save-dev
+Step 4: Run "electron ./"
 
-Step 5 (Windows Users): npm run dist-win
-
-Step 5 (Linux and MacOS Users): npm run dist-nix
-
-That's it, you should now have system binaries in a folder called ./dist
+The app should then start up in non-packaged version
