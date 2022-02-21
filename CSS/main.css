@@ -1,0 +1,219 @@
+@font-face {
+    font-family: "Ubuntu";
+    src: url("../fonts/Ubuntu-Regular.ttf");
+    }
+body{
+    overflow: hidden;
+    font-family: "Ubuntu";
+    font-size: 13px;
+    background-color: #DEE1E6;
+    color: rgb(61, 61, 61);
+}
+.welcomeframe{
+    height: 100%;
+    transition:1s linear all;
+}
+.hide{
+    opacity: 0; 
+}
+.tabs{
+    min-height: 36px;
+    height: 36px;
+    width: calc(100vw - 180px - 36px);
+    position: relative;
+    top: -5px;
+    left:0px;
+    background-color:#DDE1E3;
+    display: inline-flex;
+    -webkit-app-region: drag; 
+}
+.closebuttons{
+    min-height: 36px;
+    height: 36px;
+    width: calc(100vw - calc(100vw - 180px));
+    position: absolute;
+    top: 3px;
+    right:0;
+    background-color:#DEE1E6;
+    display: inline-flex;
+    -webkit-app-region: drag; 
+}
+.topper{
+    height: 3px;
+    width: 100vw;
+    position: absolute;
+    top:0vh;
+    left:0;
+    background-color:#DEE1E6;
+    display: inline-flex;
+}
+.searchingdiv{
+    min-height: 36px;
+    height: 36px;
+    width: 100vw;
+    position: absolute;
+    top: calc(36px + 3px);
+    left:0;
+    background-color:white;
+    display: inline-flex;
+}
+.renderingwindow{
+    height: calc(100vh - calc(36px + 36px + 0.5vh));
+    width: 100vw;
+    position: absolute;
+    top:calc(36px + 36px + 0.5vh);
+    left:0;
+    z-index:2;
+}
+.clickwindow{
+    height: calc(100vh - calc(36px + 36px + 0.5vh));
+    width: 100vw;
+    position: absolute;
+    top:calc(36px + 36px + 0.5vh);
+    left:0;
+    opacity:0;
+    z-index:3;
+}
+.leaflets{
+    min-height: 34px;
+    height:5vh;
+    width:15vw;
+    background-color: white;
+    float: left;
+    border-top-left-radius: 1vh;
+    border-top-right-radius: 1vh;
+    border: 1px solid #F1F3F4;
+    position: relative;
+    user-select: none;
+    -webkit-app-region: no-drag;
+}
+.closeleaflet{
+    background-color: none;
+}
+.closeleaflet:hover{
+    background-color: rgb(245, 241, 241);
+}
+#searchbar{
+    position: absolute;
+    top: 2.5vh;
+    left: 10vw;
+    width: 80vw;
+    height: 50%;
+}
+
+/*Emily Huang Code For Search Bar Here */
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+.searchTerm {
+    width: calc(100vw - 200px);
+    border: 3px solid #F1F3F4;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 5px 5px 5px;
+    outline: none;
+    font-size: 13px;
+    color: rgb(85, 81, 81);
+    background-color: #F3F3F3;
+    font-family: "Ubuntu";
+    user-select: none;
+}
+.searchTerm:focus{
+    border: 3px solid #00B4CC;
+    background-color: #FFFF;
+    user-select: text;
+}
+.searchButton {
+    width: 4.35vh;
+    height: 4.35vh;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px; 
+    display:none;
+}
+.wrap{
+    width: calc(100vw - 200px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:2;
+}
+#close-button{
+    position: absolute; 
+    top:-0.5vh;
+    right: 0vh;
+    background-color: #DEE1E6;
+    height:32px;
+    width: 46px;
+    -webkit-app-region: no-drag;
+    -ms-transition: all 15ms ease-out .09s;
+    transition: all 15ms ease-out .09s;
+  
+}
+#close-button:hover{
+    background-color:red;
+}
+#max-button{
+    position: absolute; 
+    top:-0.5vh;
+    right: 46px;
+    background-color: #DEE1E6;
+    height:32px;
+    width: 46px;
+    -webkit-app-region: no-drag;
+    -ms-transition: all 15ms ease-out .09s;
+    transition: all 15ms ease-out .09s;
+}
+#max-button:hover{
+    background-color:rgb(212, 209, 209);
+}
+#min-button{
+    position: absolute; 
+    top:-0.5vh;
+    right: 92px;
+    background-color: #DEE1E6;
+    height:32px;
+    width: 46px;
+    -webkit-app-region: no-drag;
+    -ms-transition: all 15ms ease-out .09s;
+    transition: all 15ms ease-out .09s;
+}
+#min-button:hover{
+    background-color:rgb(212, 209, 209);
+}
+.circlebackplus{
+    background-color:none;
+    border-radius: 50%;
+    position: relative;
+    top: 10%;
+    left:10%;
+    height: 80%;
+    width:80%;
+    -ms-transition: all 60ms ease-out .09s;
+    transition: all 60ms ease-out .09s;
+}
+.circlebackplus:hover{
+    background-color:rgb(199, 199, 199);
+}
+.circleback{
+    background-color: none;
+}
+.circleback:hover{
+    background-color: rgb(238, 238, 238);
+}
+.circlebackfocus{
+    background-color: none;
+}
+.circlebackfocus:hover{
+    background-color: rgb(238, 238, 238);
+}
+.circlebackfocus:focus{
+    background-color: rgb(238, 238, 238);
+}

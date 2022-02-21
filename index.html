@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!--Included External CSS-->
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/loginstyles.css">
+    <link rel="stylesheet" href="CSS/mainstyles.css">
+    <link rel="stylesheet" href="CSS/vidstyles.css">
+
+    <!--Included Javascript-->
+    <script src="JQuery/jquery.min.js"></script>
+    <script src="js/useragent.js"></script>
+    <script src="js/randomuserid.js"></script>
+    <script src="js/fadeout.js"></script>
+    <script src="js/hideelement.js"></script>
+    <script src="js/newtab.js"></script>
+    <script src="js/switchfocus.js"></script>
+    <script src="js/closetab.js"></script>
+    <script src="js/switchafterclose.js"></script>
+    <script src="js/back.js"></script>
+    <script src="js/obfuscateagent.js"></script>
+    <script src="js/pintabs.js"></script>
+    <script src="js/unpintabs.js"></script>
+    <script src="JQuery/Sortable.min.js"></script>
+
+    <!--Hide the cover page of the app-->
+    <script>
+      function updatecurrenttab(arg){
+        TABS.selectedTab = arg;
+        window.app.tabmenu(TABS.selectedTab);
+      }
+      function countance(arg, arg2){
+        TABS.index = newtab(arg, arg2);
+        TABS.counter = TABS.counter + 1;
+      }
+      function switchupdate(activeindex){
+        TABS.lasttabs = TABS.activeindex;
+        TABS.activeindex = switchfocus(activeindex);
+      }
+      function closetab(tabtoclose){
+        closewindow(tabtoclose); 
+        console.log("DONE")
+        switchafterclose(tabtoclose);
+        if (TABS.activeindex == "Nothing"){
+          console.log(TABS.activeindex == "Nothing")
+          document.getElementById('close-button').click()
+        }
+      }
+      //Handle the Event Listeners
+      function updateTab(id, arg, arg1, arg2){
+        if ("Index".concat(id) == TABS.activeindex){
+          //Update the urlbar
+          if (arg != "none" && arg2 != "error"){
+            document.getElementById('searchholdingbar').value = arg;
+          }
+        }
+        var sel = document.getElementsByClassName("Index".concat(id));
+        //Load Correct Info for an error icon and title
+        if (arg2 == "error"){
+          sel[0].children[2].innerHTML = arg1;
+          var canvas = sel[0].children[3];
+          var context = canvas.getContext("2d");
+
+          var myImg = new Image();
+          myImg.onload = function() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(myImg, 2, 2);
+          };
+          myImg.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAYCAYAAAAGXva8AAAAAXNSR0ICQMB9xQAAAAlwSFlzAAAXEgAAFxIBZ5/SUgAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAAPzSURBVEjHtZZdTFtlGMcbvdmNF8ZETYw3xjvnFoUOsZx+rSsFKqxb2BIJH3HOZTFTthmXmGjEGzVeOHVR5zDcMN3qykRhN8YsU4S2lA0ohTYMkMEsFEphodvp+Xj+vqe0Xb8oGsaT/NKec5r39z5P3/d5j6qlpUX1oBGduh1ywBjk+7hv8j1/4ELA/pDg5obh1wIBA2K9uuotl7Is38a4AaLbRPAaIPWXTeI307Ytk8JjelL0aFZocDfke7chTXxK8KsRc3If5UhNJtM2fWVtlc5c3agxVv5n9BZbg0qleiw5mODWtiPAQfBUEAGQZr4n2bUD4nVtTOzRP5uSWuvfeEJrrvGarAdQc6CJ0ZiAfT+Yfp1JNaPCVofWtvYRWZbbpdCVS7JLDcn1EqWks20k9GwnBIxKtt0pqcZQeaHh8Fu4MTSC0MIi5kMLWF5ZAc/HsLoaBR+LYSmyHL+fzdx8CKmYPQ7JWQTBqSHBpSM51A3Rf4KEviIS3RzgN0J2ry0qVbFmT+z8RQfSI8Ikp8+cpWMn36Nzbe0UY+JCIQXtEHqeYzIugYbEoTqWsZnWJsGxRaWH5OamYK99mEnNwk+Xf00NoGRQta+O9OV76c3mU7RLW06Nh49RNHo3/pxY4VIo13wQQr+JZVSyJnS+TILbSCTdhTT5CQl/7UzcZ+Lx3WxV604qmfIXHZ0p6ZdfnyPO9AolSzc6FsALpUbq6OzOK5VunYVw7WkmLSahtyjBiyQMWJmsjMi9C0qWccYMII8WOdITpz6g148ep/TyVdlepc+/+pbySeU7XojeQyR6mxivJTgUL69yTxg8GBbdZQMKNKwbEF3aD3OkP9g7sLPEQD19LqxGo7j8yxVsL9bStT97czNNlngdlGAruzWnI2VLeZ5H87vv0/NqHRksNlKEH3/2BeXIMkAuSullwo+XOvsffUbz+LpSIkp9/n71D2UPotfVn5pQYXEmyUVZsa8OpfrKpg2kVHB7ZA+83mSSUqWJlOqtDQXLK4gipmf+wdT0LKZu3Wfi7xkshiMZkpnbc4gs38krTpdqjNb6wv8pawSjgQl4x8Yx4r/PkC+A2eB8Mrf4wOOT0wgtLm1Oml6y/xMblXdDqYIkSfEyi1kI2Qgi+628OakS99iWueEdw8CQD9eHRwviGfTBF7ip7MW8i6yQVHKktTgly4XwEuaVE2chXJC50CI7gVbWzTS8FIkfj0yauWXUnDl0+sx32IrwjfqhnNOc2VaTIdVb9jdX7a9njb4Vjs4ucvzchc3S0dmF8xccaDrSDM5kvcneTB7JeV0xWmzvlGgtQeUYY5mTumyTcOXKkchr9+y1W2vrn8ruvf8CcHq3hNSi+F0AAAAASUVORK5CYII=";
+        }
+        //update only the title
+        else if (arg1 != "none"){
+          sel[0].children[2].innerHTML = arg1;
+        }
+        //update only the favicon
+        else if (arg2 != undefined){
+          console.log("STARTING DRAW")
+          var canvas = sel[0].children[3];
+          var context = canvas.getContext("2d");
+
+          var myImg = new Image();
+          myImg.onload = function() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(myImg, 0, 0);
+          };
+          var arr = arg2.split(','); 
+          for (var i = 0; i < arr.length; i++){
+              if(arr[i].match('32')){
+                myImg.src = arr[i];
+                break;
+              }
+              else if (i == (arr.length -1)){
+                myImg.src = arr[0];
+              }
+            }
+          //myImg.src = arr[0];
+          //sel[0].children[3].src = arg[0]
+        }
+      }
+      function removefront(){
+        // Create Namespace to use for all global variables in the future
+        window.TABS = {};
+        TABS.counter = 0;
+        TABS.index = 1; 
+        TABS.activeindex = "Index1";
+        TABS.lasttab = "Index1";
+        TABS.clickcheck = false;
+        TABS.lastload = "";
+        TABS.selectedTab ="";
+
+        //setTimeout(() => { hideelement(document.getElementById('welcome'), document.getElementById('mainpageloader'), 2000); }, 1000);
+        countance();
+        RandomizeUUID();
+        //updatelistener();
+        /*document.getElementById("backbutton").style.width = document.getElementById('backbutton').offsetHeight + 'px';
+        document.getElementById("backbutton").style.height = document.getElementById('backbutton').offsetHeight + 'px';
+        document.getElementById("forwardbutton").style.width = document.getElementById('forwardbutton').offsetHeight + 'px';
+        document.getElementById("forwardbutton").style.height = document.getElementById('forwardbutton').offsetHeight + 'px';
+        document.getElementById("reloadbutton").style.width = document.getElementById('reloadbutton').offsetHeight + 'px';
+        document.getElementById("reloadbutton").style.height = document.getElementById('reloadbutton').offsetHeight + 'px';
+        document.getElementById("dropdown").style.width = document.getElementById('dropdown').offsetHeight + 'px';
+        document.getElementById("dropdown").style.height = document.getElementById('dropdown').offsetHeight + 'px';
+        document.getElementById("settings").style.width = document.getElementById('settings').offsetHeight + 'px';
+        document.getElementById("settings").style.height = document.getElementById('settings').offsetHeight + 'px';
+        document.getElementById("searchdivbar").style.height = document.getElementById('searchdivbar').offsetHeight + 'px';*/
+      }
+    </script>
+
+    <!--Internal CSS-->
+    <style>
+      .hide{
+        opacity: 0; 
+       }
+      .fade-out {
+        transition:1s linear all;
+      }
+      .mainwindow{
+        position:absolute;
+        top: 0vh;
+        left:0;
+        height: 100%;
+        width: 100vw;
+        z-index: 0;
+        display:none;
+      }
+      .center {
+        text-align: center;
+      }
+      .menu {
+        width: 220px;
+        z-index: 1;
+        background-color: white;
+        box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        display: none;
+        transition: 0.2s display ease-in;
+        z-index:3;
+      }
+      .menu .menu-options {
+        list-style: none;
+        padding: 10px 0;
+        z-index: 1;
+      }
+      .menu .menu-options .menu-option {
+        font-weight: 500;
+        z-index: 1;
+        font-size: 14px;
+        padding: 2.5px 40px 10px 20px;
+        cursor: pointer;
+      }
+      .menu .menu-options .menu-option:hover {
+        background: rgba(0, 0, 0, 0.2);
+      }
+      button {
+        background: grey;
+        border: none;
+      }
+      button .next {
+        color: green;
+      }
+      button[disabled="false"]:hover .next {
+        color: red;
+        animation: move 0.5s;
+        animation-iteration-count: 2;
+      }
+      @keyframes move {
+        from {
+          transform: translate(0%);
+        }
+        50% {
+          transform: translate(-40%);
+        }
+        to {
+          transform: transform(0%);
+        }
+      }
+      .itemcontainer{
+        height: 36px;
+      }
+      .item{
+        width:40px;
+        display: flex;
+        justify-content: center;
+        min-height: 36px;
+        border-top-left-radius: 1vh;
+        border-top-right-radius: 1vh;
+        position: relative;
+        user-select: none;
+        -webkit-app-region: no-drag;
+      }
+    </style>
+  </head>
+  <body onload="removefront()">
+<!--Topper Div For Better Spacing-->
+    <div class="topper" oncontextmenu="return false;">
+    </div>
+<!--Make transitions less jarring by leaving div all the time-->
+    <div class="maindiv" id="mainpageloader" style="z-index: -3;" oncontextmenu="return false;">
+    </div>
+<!--Cover page you see when the app starts up
+    <div class="welcomediv" id="welcome" oncontextmenu="return false;">
+      <center>
+        <div class="welcomeicon">
+          <div class="welcomeiconinner">
+            <div class="welcomeicondot">
+            </div>
+          </div>
+        </div>
+        <div class="message">
+          Taking The Internet Back
+        </div>
+      </center>
+    </div>-->
+
+<!--Top bar for tabs-->
+    <!--This is the area where pins exist-->
+    <div style="position: absolute;background-color: #DEE1E6; top:3px; left:0; height: 37px; width: 37px;" oncontextmenu="return false;">
+        <div class="circlebackplus" onclick="javascript:countance();">
+          <img oncontextmenu="return false;" src="img/plus.png" draggable="false" style="position: relative; opacity: .25; top:25%; left: 25%; height: 50%; user-select: none; -webkit-app-region: no-drag;"  ></img>
+        </div>
+    </div>
+    <!--This is where the tabs actually exist-->
+    <div class="itemBar" style="display:flex; flex-direction: row; margin-left:29px;">
+      <div id="pinbar" class="itemContainer" style="display:flex; flex-direction: row; justify-content: center; align-items: center; background-color: #DEE1E6; position: relative; top:-5px; left:0px;"></div>
+      <div class="tabs" id="tabbar" oncontextmenu="return true;"></div>
+    </div>
+<!--Top bar for closebuttons-->
+    <div class="closebuttons" id="closebar" oncontextmenu="return false;">
+      <div id= "close-button" onclick="window.app.closeApp(true)">
+        <img oncontextmenu="return false;" src="img/close-k-30.png" draggable="false" style="opacity: 1; height: 10px; width:10px; user-select: none; -webkit-app-region: no-drag; position: absolute; top:11px; right :18px; z-index:2;"></img>
+      </div>
+      <div id= "min-button" onclick="window.app.minApp(true)">
+        <img oncontextmenu="return false;" src="img/min-k-30.png" draggable="false" style="opacity: 1; height: 10px; width:10px; user-select: none; -webkit-app-region: no-drag; position: absolute; top:11px; right :18px; z-index:2;"></img>
+      </div>
+      <div id= "max-button" onclick="window.app.maxApp(true)">
+        <img oncontextmenu="return false;" src="img/max-k-30.png" draggable="false" id="maximizeimg" maxed="0" style="opacity: 1; height: 10px; width:10px; user-select: none; -webkit-app-region: no-drag; position: absolute; top:11px; right :18px; z-index:2;"></img>
+        <img oncontextmenu="return false;" src="img/restore-k-30.png" draggable="false" id="restoreimg" maxed="0" style="opacity: 0; height: 10px; width:10px; user-select: none; -webkit-app-region: no-drag; position: absolute; top:11px; right :18px; z-index:2;"></img>
+      </div> 
+    </div>
+<!--Top bar for search-->
+    <div class="searchingdiv" id="searchdivbar">
+      <div oncontextmenu="return false;" class= "circleback"; draggable="false" style="user-select: none; position: absolute; height:24px; width:24px; border-radius:50%; top:6px; left: 6px; " onclick="window.app.back(TABS.activeindex)">
+        <img oncontextmenu="return false;" src="img/back.png" draggable="false" id="backbutton" style="user-select: none; position: relative; height:14px; top:5px; left:3.5px; opacity:.5; transform: rotate(180deg);" />
+      </div>
+      <div oncontextmenu="return false;" class= "circleback"; draggable="false" style="user-select: none; position: absolute; height:24px; width:24px; border-radius:50%; top:6px; left: 35px; " onclick="window.app.forward(TABS.activeindex)">
+        <img oncontextmenu="return false;" src="img/back.png" draggable="false" id="forwardbutton" style="user-select: none; position: relative; height:14px; top:5px; left:6.5px; opacity:.5;" />
+      </div>
+      <div oncontextmenu="return false;" class= "circleback"; draggable="false" style="user-select: none; position: absolute; height:24px; width:24px; border-radius:50%; top:6px; left: 65px; " onclick="window.app.reload(TABS.activeindex)">
+        <img oncontextmenu="return false;" src="img/reload.png" draggable="false" id="reloadbutton" style="user-select: none; position: absolute; height:18px; top: 3px; left:3px; opacity:.5; transform: rotate(360deg);" />
+      </div>
+      <div oncontextmenu="return false;" class= "circleback"; draggable="false" style="user-select: none; position: absolute; height:24px; width:24px; border-radius:50%; top:6px; right:6px; " onclick="window.app.menu(TABS.activeindex)">
+        <img oncontextmenu="return false;" src="img/dots.png" draggable="false" id="dropdown" style="user-select: none; position: absolute; height:18px; top: 3px; right:3px; opacity:.5; transform: rotate(360deg);" />
+      </div>
+      <div oncontextmenu="return false;" class= "circleback"; draggable="false" style="user-select: none; position: absolute; height:24px; width:24px; border-radius:50%; top:6px; right:40px; " onclick="">
+        <img oncontextmenu="return false;" src="img/gears.png" draggable="false" id="settings" style="user-select: none; position: absolute; height:18px; top: 3px; right:3px; opacity:.5; transform: rotate(360deg);" onclick=""/> 
+      </div>
+      <div class="wrap">
+        <div class="search">
+          <form onsubmit="return false;" method="post">
+           <input type="text" class="searchTerm" id="searchholdingbar" placeholder="What are you looking for?" oncontextmenu="return true;" onfocus="setTimeout(function(){ document.getElementById('searchholdingbar').select(); }, 1);">
+           <input type="submit" name="submit" onclick="javascript:loadurlbar()" style="display: none;"/>
+          </form>
+           <input type="url" id="holdingbarforterm" style="display:none;">
+           <button type="submit" class="searchButton">
+             <i class="fa fa-search"></i>
+          </button>
+        </div>
+     </div>
+    </div>
+
+<!--Render the tabs in this webview -->
+    <div class="renderingwindow" id="renderingwindowspace">
+      
+    </div>
+
+<!--Transparent Window For Clicks-->
+    <div class="clickwindow" id="hiddenwindow" style="display:none;"></div>
+
+
+<!--Randomize the userid Webview of the tab loader-->
+    <script>
+      function RandomizeUUID(){
+        //Default: Completely Random User-Agent
+        var id = random(5).concat('/5.0', '(X', random(3), '; ', random(6), '; *NIX ', random(6), '; rv:', random(3), ') Gecko/20100101');
+        //Randomized Linux Chrome User Agent
+        var id = random(5).concat('/5.0 (', random(3), '; ', random(5), 'x86_64)', 'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36');
+        //Default Chrome Agent For Linux
+        var id = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36';
+        //Default Chrome Agent for Windows
+        var id = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246';
+        document.getElementById("mainpageloader").setAttribute("useragent", id);
+      }
+    </script>
+    <script>
+      // You can also require other files to run in this process
+    </script>
+    <script src="js/loadurls.js"></script>
+    <script src="js/SortingTabs.js"></script>
+  </body>
+</html>

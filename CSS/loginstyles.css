@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "Ubuntu";
+    src: url("/fonts/Ubuntu-Regular.ttf");
+    }
+.welcomediv{
+    background-color:#00B4CC;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0vh;
+    left:0vw;
+    z-index: 3;
+}
+.welcomeicon{
+    width:20vh;
+    height:20vh;
+    border-radius: 100%;
+    background-color:#3a4392;
+    margin-top: 20vh;
+}
+.welcomeiconinner{
+    width:15vh;
+    height:15vh;
+    border-radius: 100%;
+    background-color:#ffffff;
+}
+.welcomeicondot{
+    width:10vh;
+    height:10vh;
+    border-radius: 100%;
+    background-color:#3a4392;
+}
+.login{
+    height: 10vh; 
+    width: 30vh;
+    background-color:aquamarine;
+    margin-top: 30vh;
+    z-index: 3;
+    border: none;
+    border-radius: 100px;
+    font-family: Ubuntu;
+    color: rgb(88, 84, 84);
+}
+.message{
+    color: white;
+    margin-top: 5vh;
+    font-size: 3vh;
+    font-family: Ubuntu;
+}
+body{
+    background-color: #EBFAF2;
+    font-family: Ubuntu;
+}
+

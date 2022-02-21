@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Ubuntu";
+    src: url("./fonts/Ubuntu-Regular.ttf");
+    }
+.viddiv{
+  background-color:#59d47a;
+  height: 95vh;
+  width: 95vw;
+  position: absolute;
+  top: 2.5vh;
+  left:2.5vw;
+  border-radius: 20px;
+  display: none;
+}
